@@ -226,6 +226,12 @@ The evaluation harness boots the API once per LAYA checkpoint, replays
 request body, response body, wall-clock timestamp, and latency for every call. It emits
 `TEST_REPORT.md` plus raw JSON under `results/`.
 
+> `scripts/threshold_retest.py` and `results/threshold-045-retest.json` are the earlier, narrower
+> instrumentation that measured the threshold change on its own. `scripts/run_eval.py` supersedes
+> them; they are kept because that raw per-query record — shortlist scores against the gate, every
+> node fed to LAYA, the answers, and the latency/CPU/RSS samples — is the evidence behind the
+> threshold findings in §6.1.
+
 ### 6.1 Measured results
 
 `scripts/run_eval.py` replays the 54 labeled cases in `scripts/eval_questions.py` against three
