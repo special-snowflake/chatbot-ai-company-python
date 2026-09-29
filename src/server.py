@@ -32,11 +32,12 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 from .catalog_service import CatalogService
-from .config import config
+from .config import answering, config
 from .embeddings import create_embedding_provider
 from .laya_engine import create_laya_provider
 from .routes import register_catalog_routes
 from .source_loader import load_source_entries
+from .synthesizer import ApiSynthesizer
 
 logging.basicConfig(
     level=logging.INFO,
@@ -125,12 +126,33 @@ async def create_server(
     # ------------------------------------------------------------------ #
     # Service wiring
     # ------------------------------------------------------------------ #
+    # Only build a synthesizer when an endpoint is actually configured: leaving
+    # SYNTHESIZER_BASE_URL empty keeps the service fully local at zero cost.
+    synthesizer = None
+    if answering.synthesizer_base_url:
+        synthesizer = ApiSynthesizer(
+            base_url=answering.synthesizer_base_url,
+            model=answering.synthesizer_model,
+            api_key=answering.synthesizer_api_key,
+            timeout_ms=answering.synthesizer_timeout_ms,
+        )
+        log.info("synthesizer configured: %s", answering.synthesizer_model)
+
     catalog_service = CatalogService(
         embedder=embedder or create_embedding_provider(config.embedding_model),
         llm=llm or create_laya_provider(config.laya_model, config.llm_timeout_ms),
         threshold=config.similarity_threshold,
         top_k=config.top_k,
         logger_=log,
+        tie_epsilon=answering.tie_epsilon,
+        max_tie_nodes=answering.max_tie_nodes,
+        drop_contentless_nodes=answering.drop_contentless_nodes,
+        enable_compound_split=answering.enable_compound_split,
+        enable_hazard_escalation=answering.enable_hazard_escalation,
+        enable_budget_listing=answering.enable_budget_listing,
+        answer_mode=answering.answer_mode,
+        query_cache_size=answering.query_cache_size,
+        synthesizer=synthesizer,
     )
     register_catalog_routes(app, catalog_service, log)
 
@@ -141,10 +163,13 @@ async def create_server(
         )
 
     if auto_ingest:
-        # ``create_laya_provider`` builds the Router, but LAYA downloads its
-        # checkpoint lazily on first predict. Warm it here so the first real
-        # query is not slower than every later one.
-        await asyncio.to_thread(_warmup, catalog_service)
+        if answering.warm_layap:
+            # ``create_laya_provider`` builds the Router, but LAYA downloads its
+            # checkpoint lazily on first predict. Warming it here stops the first
+            # real query being slower than every later one — at a cost of roughly
+            # 1.6 GB resident. Off by default, because the deterministic answering
+            # path means most installs never reach LAYA (WARM_LAYAP, README §7).
+            await asyncio.to_thread(_warmup, catalog_service)
 
         # Unlike the original (which throws), a missing/unreadable source leaves
         # the catalog empty and the server still starts. Queries then return the
