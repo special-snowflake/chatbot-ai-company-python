@@ -250,12 +250,18 @@ loaded model. Full output and every failure is in `EVAL_REPORT.md`.
 | out-of-scope (must refuse) | 7/7 | 7/7 | 7/7 |
 | conversational | 4/4 | 4/4 | 4/4 |
 
-Two things the numbers settle directly:
+Three things the numbers settle directly:
 
 * **Relaxing the gate was never the fix.** 0.58 → 0.45 bought one case out of 54 (51.9% → 53.7%);
   the strategy moved it to 96.3%. It also made latency *worse* (p50 47 ms → 3 368 ms), because more
   queries cleared the gate and reached LAYA. Both changes are kept — the gate relaxation is still
   worth having — but the ordering of their contributions is not what it looked like.
+* **The gate was not even the main refuser.** Of the 25 failures remaining at gate 0.45, **11 were
+  refused by the numeric gate and 14 by LAYA's own relevance gate** — questions that had already
+  cleared the threshold. At 0.58 the split was 20 numeric to 6 LAYA. Relaxing the gate therefore did
+  not remove failures so much as move them downstream, which is why it recovered almost nothing. A
+  representative case: `compound-bulb-detail-and-price` scored 0.651, cleared the gate comfortably,
+  and LAYA still refused it.
 * **Out-of-scope precision did not regress.** All three configurations refuse all seven
   out-of-scope questions, so the accuracy gains are not bought with invented answers.
 
