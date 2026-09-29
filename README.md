@@ -278,6 +278,19 @@ unrelated questions.
 
 ---
 
+### 6.2 Diagrams
+
+`scripts/make_architecture_figures.py` generates two figures into `docs/`:
+
+* `answering-before-after` — the ported pipeline and the reworked one, stacked, each with its
+  measured cost strip.
+* `answering-flow` — one request's journey beside where the 54 eval cases actually landed.
+
+Both are self-contained HTML with inline SVG; the PNGs are rendered with headless Chrome. Every
+number in them comes from `results/eval-*.json`, so re-run the script after changing the strategy.
+
+---
+
 ## 7. Notes
 
 ### Answering
