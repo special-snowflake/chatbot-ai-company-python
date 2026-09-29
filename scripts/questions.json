@@ -1,0 +1,156 @@
+{
+  "description": "Grounded evaluation set for the NOVAHAUS catalog. Each group holds paraphrases of the same underlying question so we can measure whether rewording changes the answer.",
+  "groups": [
+    {
+      "id": "greeting",
+      "category": "Conversational",
+      "expected": "Canned greeting from conversational_intent(); no catalog lookup",
+      "variants": ["Hello!", "Hi there", "Hey", "Good morning"]
+    },
+    {
+      "id": "thanks",
+      "category": "Conversational",
+      "expected": "Canned acknowledgement; no catalog lookup",
+      "variants": ["Thanks a lot", "Thank you", "Appreciate it", "Thanks, that helps"]
+    },
+    {
+      "id": "shipping_jabodetabek",
+      "category": "FAQ - Shipping",
+      "expected": "1-3 business days (NOVAHAUS_FAQ orders & shipping)",
+      "variants": [
+        "How long does delivery take in Jabodetabek?",
+        "What is the delivery time for Jabodetabek?",
+        "How many days does shipping take in Jabodetabek?",
+        "When will my order arrive in Jabodetabek?"
+      ]
+    },
+    {
+      "id": "return_window",
+      "category": "FAQ - Returns",
+      "expected": "7 calendar days",
+      "variants": [
+        "How long is the return window?",
+        "How many days do I have to return an item?",
+        "What is the return period?",
+        "Can I return a product after 10 days?"
+      ]
+    },
+    {
+      "id": "support_hours",
+      "category": "FAQ - Support",
+      "expected": "Monday-Friday 09:00-18:00 WIB",
+      "variants": [
+        "What are support hours?",
+        "When is customer support available?",
+        "What time does support open?",
+        "Is support open on Saturday?"
+      ]
+    },
+    {
+      "id": "cheapest_product",
+      "category": "FAQ - Product Selection",
+      "expected": "Glow Bulb A19 at Rp129,000",
+      "variants": [
+        "What is the cheapest NOVAHAUS product?",
+        "Which product is the least expensive?",
+        "What is the most affordable item you sell?",
+        "Lowest priced product?"
+      ]
+    },
+    {
+      "id": "hub_zigbee_limit",
+      "category": "FAQ - Sensors & Hubs",
+      "expected": "Home Hub Pro supports up to 100 Zigbee devices",
+      "variants": [
+        "How many Zigbee devices can Home Hub Pro support?",
+        "What is the maximum number of Zigbee devices for Home Hub Pro?",
+        "Home Hub Pro device limit?",
+        "How many devices can Home Hub Pro handle?"
+      ]
+    },
+    {
+      "id": "wifi_5ghz",
+      "category": "FAQ - Connectivity",
+      "expected": "Most products require 2.4GHz",
+      "variants": [
+        "Do NOVAHAUS Wi-Fi products support 5GHz?",
+        "Can I connect your devices to a 5GHz network?",
+        "Is 5GHz Wi-Fi supported?",
+        "Will your devices work on 5G wifi?"
+      ]
+    },
+    {
+      "id": "warranty_glow",
+      "category": "FAQ - Warranty",
+      "expected": "Glow lighting carries a 2-year warranty",
+      "variants": [
+        "How long is the Glow Bulb warranty?",
+        "What is the warranty period for Glow bulbs?",
+        "Glow warranty duration?",
+        "Does the Glow Bulb have a warranty?"
+      ]
+    },
+    {
+      "id": "camera_storage",
+      "category": "FAQ - Cameras",
+      "expected": "Secure Cam Pan supports microSD up to 256GB",
+      "variants": [
+        "What storage does Secure Cam Pan support?",
+        "How much microSD storage can Secure Cam Pan take?",
+        "Secure Cam Pan memory card limit?"
+      ]
+    },
+    {
+      "id": "budget_smart_plug",
+      "category": "Budget filtering",
+      "expected": "Budget path: Connect Plug Mini Rp149,000 matches under 200k",
+      "variants": [
+        "I want a smart plug under 200k",
+        "Show me smart plugs below Rp 200.000",
+        "Smart plug cheaper than 200000",
+        "maximum 200000 for a smart plug"
+      ]
+    },
+    {
+      "id": "budget_camera",
+      "category": "Budget filtering",
+      "expected": "No camera under 300k; budget path should not fabricate one",
+      "variants": [
+        "Is there a camera under 300k?",
+        "Any security camera below Rp 300.000?",
+        "cheapest camera under 300000"
+      ]
+    },
+    {
+      "id": "safety_escalation",
+      "category": "Safety critical",
+      "expected": "Escalation wording (burning smell / smoke / sparking)",
+      "variants": [
+        "My smart switch is sparking and there is a burning smell",
+        "There is smoke coming from my smart plug",
+        "My Connect Plug is melting"
+      ]
+    },
+    {
+      "id": "mixed_intent",
+      "category": "Mixed conversational + factual",
+      "expected": "Prefix acknowledgement + factual answer from catalog",
+      "variants": [
+        "Hi, how long does delivery take in Java?",
+        "Thanks, what is the return window?",
+        "Hello, how many Zigbee devices can Home Hub Mini support?"
+      ]
+    },
+    {
+      "id": "out_of_scope",
+      "category": "Out of scope",
+      "expected": "matched=false, refusal message",
+      "variants": [
+        "What is the capital of France?",
+        "Can you cook me a pizza?",
+        "Tell me a joke",
+        "Who won the 2022 World Cup?"
+      ]
+    }
+  ]
+}

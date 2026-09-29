@@ -1,0 +1,1018 @@
+{
+  "model": "multilingual",
+  "port": 8092,
+  "ready_seconds": 21.08,
+  "catalog_probe": "ingested",
+  "started_at": "2026-09-29T11:28:55.143",
+  "finished_at": "2026-09-29T11:30:24.105",
+  "rows": [
+    {
+      "group": "greeting",
+      "category": "Conversational",
+      "expected": "Canned greeting from conversational_intent(); no catalog lookup",
+      "question": "Hello!",
+      "timestamp": "2026-09-29T11:28:55.143",
+      "latency_ms": 2.81,
+      "http_status": 200,
+      "request": {
+        "query": "Hello!"
+      },
+      "response": {
+        "matched": true,
+        "answer": "Hello! How can I help you today?",
+        "score": 1.0,
+        "degraded": false
+      }
+    },
+    {
+      "group": "greeting",
+      "category": "Conversational",
+      "expected": "Canned greeting from conversational_intent(); no catalog lookup",
+      "question": "Hi there",
+      "timestamp": "2026-09-29T11:28:55.146",
+      "latency_ms": 23.14,
+      "http_status": 200,
+      "request": {
+        "query": "Hi there"
+      },
+      "response": {
+        "matched": false,
+        "answer": "Sorry, I cannot help with that based on the available catalog.",
+        "score": 0.19654536681843324,
+        "degraded": false
+      }
+    },
+    {
+      "group": "greeting",
+      "category": "Conversational",
+      "expected": "Canned greeting from conversational_intent(); no catalog lookup",
+      "question": "Hey",
+      "timestamp": "2026-09-29T11:28:55.169",
+      "latency_ms": 2.93,
+      "http_status": 200,
+      "request": {
+        "query": "Hey"
+      },
+      "response": {
+        "matched": true,
+        "answer": "Hello! How can I help you today?",
+        "score": 1.0,
+        "degraded": false
+      }
+    },
+    {
+      "group": "greeting",
+      "category": "Conversational",
+      "expected": "Canned greeting from conversational_intent(); no catalog lookup",
+      "question": "Good morning",
+      "timestamp": "2026-09-29T11:28:55.172",
+      "latency_ms": 2.88,
+      "http_status": 200,
+      "request": {
+        "query": "Good morning"
+      },
+      "response": {
+        "matched": true,
+        "answer": "Hello! How can I help you today?",
+        "score": 1.0,
+        "degraded": false
+      }
+    },
+    {
+      "group": "thanks",
+      "category": "Conversational",
+      "expected": "Canned acknowledgement; no catalog lookup",
+      "question": "Thanks a lot",
+      "timestamp": "2026-09-29T11:28:55.175",
+      "latency_ms": 2.99,
+      "http_status": 200,
+      "request": {
+        "query": "Thanks a lot"
+      },
+      "response": {
+        "matched": true,
+        "answer": "You are welcome!",
+        "score": 1.0,
+        "degraded": false
+      }
+    },
+    {
+      "group": "thanks",
+      "category": "Conversational",
+      "expected": "Canned acknowledgement; no catalog lookup",
+      "question": "Thank you",
+      "timestamp": "2026-09-29T11:28:55.178",
+      "latency_ms": 2.77,
+      "http_status": 200,
+      "request": {
+        "query": "Thank you"
+      },
+      "response": {
+        "matched": true,
+        "answer": "You are welcome!",
+        "score": 1.0,
+        "degraded": false
+      }
+    },
+    {
+      "group": "thanks",
+      "category": "Conversational",
+      "expected": "Canned acknowledgement; no catalog lookup",
+      "question": "Appreciate it",
+      "timestamp": "2026-09-29T11:28:55.181",
+      "latency_ms": 2.74,
+      "http_status": 200,
+      "request": {
+        "query": "Appreciate it"
+      },
+      "response": {
+        "matched": true,
+        "answer": "You are welcome!",
+        "score": 1.0,
+        "degraded": false
+      }
+    },
+    {
+      "group": "thanks",
+      "category": "Conversational",
+      "expected": "Canned acknowledgement; no catalog lookup",
+      "question": "Thanks, that helps",
+      "timestamp": "2026-09-29T11:28:55.184",
+      "latency_ms": 2.76,
+      "http_status": 200,
+      "request": {
+        "query": "Thanks, that helps"
+      },
+      "response": {
+        "matched": true,
+        "answer": "You are welcome!",
+        "score": 1.0,
+        "degraded": false
+      }
+    },
+    {
+      "group": "shipping_jabodetabek",
+      "category": "FAQ - Shipping",
+      "expected": "1-3 business days (NOVAHAUS_FAQ orders & shipping)",
+      "question": "How long does delivery take in Jabodetabek?",
+      "timestamp": "2026-09-29T11:28:55.187",
+      "latency_ms": 1051.97,
+      "http_status": 200,
+      "request": {
+        "query": "How long does delivery take in Jabodetabek?"
+      },
+      "response": {
+        "matched": true,
+        "answer": "NOVAHAUS_FAQ\n**Q: How long does delivery take in Jabodetabek?**\nA: Typical delivery is 1-3 business days.",
+        "score": 0.8628783737890793,
+        "degraded": false
+      }
+    },
+    {
+      "group": "shipping_jabodetabek",
+      "category": "FAQ - Shipping",
+      "expected": "1-3 business days (NOVAHAUS_FAQ orders & shipping)",
+      "question": "What is the delivery time for Jabodetabek?",
+      "timestamp": "2026-09-29T11:28:56.239",
+      "latency_ms": 1071.23,
+      "http_status": 200,
+      "request": {
+        "query": "What is the delivery time for Jabodetabek?"
+      },
+      "response": {
+        "matched": true,
+        "answer": "NOVAHAUS_FAQ\n**Q: How long does delivery take in Jabodetabek?**\nA: Typical delivery is 1-3 business days.",
+        "score": 0.8261908700102871,
+        "degraded": false
+      }
+    },
+    {
+      "group": "shipping_jabodetabek",
+      "category": "FAQ - Shipping",
+      "expected": "1-3 business days (NOVAHAUS_FAQ orders & shipping)",
+      "question": "How many days does shipping take in Jabodetabek?",
+      "timestamp": "2026-09-29T11:28:57.310",
+      "latency_ms": 1126.78,
+      "http_status": 200,
+      "request": {
+        "query": "How many days does shipping take in Jabodetabek?"
+      },
+      "response": {
+        "matched": true,
+        "answer": "NOVAHAUS_FAQ\n**Q: How long does delivery take in Jabodetabek?**\nA: Typical delivery is 1-3 business days.",
+        "score": 0.7272821252078957,
+        "degraded": false
+      }
+    },
+    {
+      "group": "shipping_jabodetabek",
+      "category": "FAQ - Shipping",
+      "expected": "1-3 business days (NOVAHAUS_FAQ orders & shipping)",
+      "question": "When will my order arrive in Jabodetabek?",
+      "timestamp": "2026-09-29T11:28:58.437",
+      "latency_ms": 2074.08,
+      "http_status": 200,
+      "request": {
+        "query": "When will my order arrive in Jabodetabek?"
+      },
+      "response": {
+        "matched": true,
+        "answer": "NOVAHAUS_FAQ\n**Q: How long does delivery take in Jabodetabek?**\nA: Typical delivery is 1-3 business days.",
+        "score": 0.6932732025981845,
+        "degraded": false
+      }
+    },
+    {
+      "group": "return_window",
+      "category": "FAQ - Returns",
+      "expected": "7 calendar days",
+      "question": "How long is the return window?",
+      "timestamp": "2026-09-29T11:29:00.511",
+      "latency_ms": 2116.65,
+      "http_status": 200,
+      "request": {
+        "query": "How long is the return window?"
+      },
+      "response": {
+        "matched": true,
+        "answer": "NOVAHAUS_FAQ\n**Q: How long is the return window?**\nA: Eligible products can generally be returned within 7 calendar days, subject to the return policy.",
+        "score": 0.66854971657377,
+        "degraded": false
+      }
+    },
+    {
+      "group": "return_window",
+      "category": "FAQ - Returns",
+      "expected": "7 calendar days",
+      "question": "How many days do I have to return an item?",
+      "timestamp": "2026-09-29T11:29:02.628",
+      "latency_ms": 2186.44,
+      "http_status": 200,
+      "request": {
+        "query": "How many days do I have to return an item?"
+      },
+      "response": {
+        "matched": true,
+        "answer": "NOVAHAUS_FAQ\n**Q: How long is the return window?**\nA: Eligible products can generally be returned within 7 calendar days, subject to the return policy.",
+        "score": 0.5816318864254326,
+        "degraded": false
+      }
+    },
+    {
+      "group": "return_window",
+      "category": "FAQ - Returns",
+      "expected": "7 calendar days",
+      "question": "What is the return period?",
+      "timestamp": "2026-09-29T11:29:04.814",
+      "latency_ms": 28.99,
+      "http_status": 200,
+      "request": {
+        "query": "What is the return period?"
+      },
+      "response": {
+        "matched": false,
+        "answer": "Sorry, I cannot help with that based on the available catalog.",
+        "score": 0.521175534894108,
+        "degraded": false
+      }
+    },
+    {
+      "group": "return_window",
+      "category": "FAQ - Returns",
+      "expected": "7 calendar days",
+      "question": "Can I return a product after 10 days?",
+      "timestamp": "2026-09-29T11:29:04.843",
+      "latency_ms": 28.63,
+      "http_status": 200,
+      "request": {
+        "query": "Can I return a product after 10 days?"
+      },
+      "response": {
+        "matched": false,
+        "answer": "Sorry, I cannot help with that based on the available catalog.",
+        "score": 0.5458991296438492,
+        "degraded": false
+      }
+    },
+    {
+      "group": "support_hours",
+      "category": "FAQ - Support",
+      "expected": "Monday-Friday 09:00-18:00 WIB",
+      "question": "What are support hours?",
+      "timestamp": "2026-09-29T11:29:04.872",
+      "latency_ms": 2345.85,
+      "http_status": 200,
+      "request": {
+        "query": "What are support hours?"
+      },
+      "response": {
+        "matched": true,
+        "answer": "NOVAHAUS_FAQ\n**Q: What are support hours?**\nA: Support is available Monday through Friday, 09:00-18:00 WIB, excluding Indonesian public holidays.\n\n## 2. Product Selection",
+        "score": 0.7150096174698293,
+        "degraded": false
+      }
+    },
+    {
+      "group": "support_hours",
+      "category": "FAQ - Support",
+      "expected": "Monday-Friday 09:00-18:00 WIB",
+      "question": "When is customer support available?",
+      "timestamp": "2026-09-29T11:29:07.218",
+      "latency_ms": 28.06,
+      "http_status": 200,
+      "request": {
+        "query": "When is customer support available?"
+      },
+      "response": {
+        "matched": false,
+        "answer": "Sorry, I cannot help with that based on the available catalog.",
+        "score": 0.5562828470354311,
+        "degraded": false
+      }
+    },
+    {
+      "group": "support_hours",
+      "category": "FAQ - Support",
+      "expected": "Monday-Friday 09:00-18:00 WIB",
+      "question": "What time does support open?",
+      "timestamp": "2026-09-29T11:29:07.246",
+      "latency_ms": 28.0,
+      "http_status": 200,
+      "request": {
+        "query": "What time does support open?"
+      },
+      "response": {
+        "matched": false,
+        "answer": "Sorry, I cannot help with that based on the available catalog.",
+        "score": 0.5452652988100509,
+        "degraded": false
+      }
+    },
+    {
+      "group": "support_hours",
+      "category": "FAQ - Support",
+      "expected": "Monday-Friday 09:00-18:00 WIB",
+      "question": "Is support open on Saturday?",
+      "timestamp": "2026-09-29T11:29:07.274",
+      "latency_ms": 27.65,
+      "http_status": 200,
+      "request": {
+        "query": "Is support open on Saturday?"
+      },
+      "response": {
+        "matched": false,
+        "answer": "Sorry, I cannot help with that based on the available catalog.",
+        "score": 0.5115778256231338,
+        "degraded": false
+      }
+    },
+    {
+      "group": "cheapest_product",
+      "category": "FAQ - Product Selection",
+      "expected": "Glow Bulb A19 at Rp129,000",
+      "question": "What is the cheapest NOVAHAUS product?",
+      "timestamp": "2026-09-29T11:29:07.302",
+      "latency_ms": 2182.52,
+      "http_status": 200,
+      "request": {
+        "query": "What is the cheapest NOVAHAUS product?"
+      },
+      "response": {
+        "matched": true,
+        "answer": "NOVAHAUS_FAQ\n**Q: What is the cheapest smart plug?**\nA: Connect Plug Mini is priced at Rp149,000.",
+        "score": 0.776264989849297,
+        "degraded": false
+      }
+    },
+    {
+      "group": "cheapest_product",
+      "category": "FAQ - Product Selection",
+      "expected": "Glow Bulb A19 at Rp129,000",
+      "question": "Which product is the least expensive?",
+      "timestamp": "2026-09-29T11:29:09.484",
+      "latency_ms": 28.22,
+      "http_status": 200,
+      "request": {
+        "query": "Which product is the least expensive?"
+      },
+      "response": {
+        "matched": false,
+        "answer": "Sorry, I cannot help with that based on the available catalog.",
+        "score": 0.48415317089321164,
+        "degraded": false
+      }
+    },
+    {
+      "group": "cheapest_product",
+      "category": "FAQ - Product Selection",
+      "expected": "Glow Bulb A19 at Rp129,000",
+      "question": "What is the most affordable item you sell?",
+      "timestamp": "2026-09-29T11:29:09.513",
+      "latency_ms": 27.82,
+      "http_status": 200,
+      "request": {
+        "query": "What is the most affordable item you sell?"
+      },
+      "response": {
+        "matched": false,
+        "answer": "Sorry, I cannot help with that based on the available catalog.",
+        "score": 0.40389788961026124,
+        "degraded": false
+      }
+    },
+    {
+      "group": "cheapest_product",
+      "category": "FAQ - Product Selection",
+      "expected": "Glow Bulb A19 at Rp129,000",
+      "question": "Lowest priced product?",
+      "timestamp": "2026-09-29T11:29:09.540",
+      "latency_ms": 1781.49,
+      "http_status": 200,
+      "request": {
+        "query": "Lowest priced product?"
+      },
+      "response": {
+        "matched": true,
+        "answer": "NOVAHAUS_FAQ\n**Q: What is the cheapest NOVAHAUS product?**\nA: The lowest-priced product in the current catalog is the Glow Bulb A19 at Rp129,000.",
+        "score": 0.6380446729385754,
+        "degraded": false
+      }
+    },
+    {
+      "group": "hub_zigbee_limit",
+      "category": "FAQ - Sensors & Hubs",
+      "expected": "Home Hub Pro supports up to 100 Zigbee devices",
+      "question": "How many Zigbee devices can Home Hub Pro support?",
+      "timestamp": "2026-09-29T11:29:11.322",
+      "latency_ms": 1214.15,
+      "http_status": 200,
+      "request": {
+        "query": "How many Zigbee devices can Home Hub Pro support?"
+      },
+      "response": {
+        "matched": true,
+        "answer": "NOVAHAUS_FAQ\n**Q: How many Zigbee devices can Home Hub Pro support?**\nA: Home Hub Pro supports up to 100 Zigbee devices.",
+        "score": 0.8990766286422849,
+        "degraded": false
+      }
+    },
+    {
+      "group": "hub_zigbee_limit",
+      "category": "FAQ - Sensors & Hubs",
+      "expected": "Home Hub Pro supports up to 100 Zigbee devices",
+      "question": "What is the maximum number of Zigbee devices for Home Hub Pro?",
+      "timestamp": "2026-09-29T11:29:12.536",
+      "latency_ms": 1233.0,
+      "http_status": 200,
+      "request": {
+        "query": "What is the maximum number of Zigbee devices for Home Hub Pro?"
+      },
+      "response": {
+        "matched": true,
+        "answer": "NOVAHAUS_FAQ\n**Q: How many Zigbee devices can Home Hub Mini support?**\nA: Home Hub Mini supports up to 50 Zigbee devices.",
+        "score": 0.8025519546097453,
+        "degraded": false
+      }
+    },
+    {
+      "group": "hub_zigbee_limit",
+      "category": "FAQ - Sensors & Hubs",
+      "expected": "Home Hub Pro supports up to 100 Zigbee devices",
+      "question": "Home Hub Pro device limit?",
+      "timestamp": "2026-09-29T11:29:13.769",
+      "latency_ms": 1778.19,
+      "http_status": 200,
+      "request": {
+        "query": "Home Hub Pro device limit?"
+      },
+      "response": {
+        "matched": true,
+        "answer": "NOVAHAUS_FAQ\n**Q: Which hub is more capable?**\nA: Home Hub Pro supports a larger Zigbee device count and additional ecosystem capabilities compared with Home Hub Mini.",
+        "score": 0.6182952912058792,
+        "degraded": false
+      }
+    },
+    {
+      "group": "hub_zigbee_limit",
+      "category": "FAQ - Sensors & Hubs",
+      "expected": "Home Hub Pro supports up to 100 Zigbee devices",
+      "question": "How many devices can Home Hub Pro handle?",
+      "timestamp": "2026-09-29T11:29:15.547",
+      "latency_ms": 1212.63,
+      "http_status": 200,
+      "request": {
+        "query": "How many devices can Home Hub Pro handle?"
+      },
+      "response": {
+        "matched": true,
+        "answer": "NOVAHAUS_FAQ\n**Q: How many Zigbee devices can Home Hub Mini support?**\nA: Home Hub Mini supports up to 50 Zigbee devices.",
+        "score": 0.7559850612059096,
+        "degraded": false
+      }
+    },
+    {
+      "group": "wifi_5ghz",
+      "category": "FAQ - Connectivity",
+      "expected": "Most products require 2.4GHz",
+      "question": "Do NOVAHAUS Wi-Fi products support 5GHz?",
+      "timestamp": "2026-09-29T11:29:16.760",
+      "latency_ms": 1560.59,
+      "http_status": 200,
+      "request": {
+        "query": "Do NOVAHAUS Wi-Fi products support 5GHz?"
+      },
+      "response": {
+        "matched": true,
+        "answer": "NOVAHAUS_FAQ\n**Q: Do all NOVAHAUS products require a hub?**\nA: No. Many Wi-Fi products can operate without a hub. Zigbee sensors require a compatible Home Hub.\n\n## 3. Wi-Fi & Connectivity",
+        "score": 0.9415120723882082,
+        "degraded": false
+      }
+    },
+    {
+      "group": "wifi_5ghz",
+      "category": "FAQ - Connectivity",
+      "expected": "Most products require 2.4GHz",
+      "question": "Can I connect your devices to a 5GHz network?",
+      "timestamp": "2026-09-29T11:29:18.321",
+      "latency_ms": 2407.32,
+      "http_status": 200,
+      "request": {
+        "query": "Can I connect your devices to a 5GHz network?"
+      },
+      "response": {
+        "matched": true,
+        "answer": "NOVAHAUS_FAQ\n**Q: My router combines 2.4GHz and 5GHz under one network name. What should I do?**\nA: If pairing fails, temporarily disable 5GHz or create a dedicated 2.4GHz SSID during setup, then reconnect the device.",
+        "score": 0.5987724976120776,
+        "degraded": false
+      }
+    },
+    {
+      "group": "wifi_5ghz",
+      "category": "FAQ - Connectivity",
+      "expected": "Most products require 2.4GHz",
+      "question": "Is 5GHz Wi-Fi supported?",
+      "timestamp": "2026-09-29T11:29:20.728",
+      "latency_ms": 2369.06,
+      "http_status": 200,
+      "request": {
+        "query": "Is 5GHz Wi-Fi supported?"
+      },
+      "response": {
+        "matched": true,
+        "answer": "NOVAHAUS_FAQ\n**Q: Do NOVAHAUS Wi-Fi products support 5GHz?**\nA: Most current Wi-Fi products require 2.4GHz Wi-Fi for setup and operation.",
+        "score": 0.7227464146217895,
+        "degraded": false
+      }
+    },
+    {
+      "group": "wifi_5ghz",
+      "category": "FAQ - Connectivity",
+      "expected": "Most products require 2.4GHz",
+      "question": "Will your devices work on 5G wifi?",
+      "timestamp": "2026-09-29T11:29:23.097",
+      "latency_ms": 29.18,
+      "http_status": 200,
+      "request": {
+        "query": "Will your devices work on 5G wifi?"
+      },
+      "response": {
+        "matched": false,
+        "answer": "Sorry, I cannot help with that based on the available catalog.",
+        "score": 0.5148659283604174,
+        "degraded": false
+      }
+    },
+    {
+      "group": "warranty_glow",
+      "category": "FAQ - Warranty",
+      "expected": "Glow lighting carries a 2-year warranty",
+      "question": "How long is the Glow Bulb warranty?",
+      "timestamp": "2026-09-29T11:29:23.126",
+      "latency_ms": 2641.97,
+      "http_status": 200,
+      "request": {
+        "query": "How long is the Glow Bulb warranty?"
+      },
+      "response": {
+        "matched": true,
+        "answer": "NOVAHAUS_Product_Catalog\n### Glow Bulb RGB\n- **SKU:** NH-GL-RGB-A19\n- **Category:** Smart Lighting\n- **Retail price:** Rp179,000\n- **Warranty:** 2 years\n- **Key specifications:** 9W LED | 806 lm | 2700K-6500K + RGB | Wi-Fi 2.4GHz + Bluetooth | Dimmable | E27 socket | 220-240V\n- **Key capabilities:** 16-million-color RGB | Remote control | Schedules | Scene presets | Sleep mode | Music-reactive lighting\n- **Compatibility:** NOVAHAUS Home | Google Home | Amazon Alexa | Apple Home via Hub Pro",
+        "score": 0.7457354130107305,
+        "degraded": false
+      }
+    },
+    {
+      "group": "warranty_glow",
+      "category": "FAQ - Warranty",
+      "expected": "Glow lighting carries a 2-year warranty",
+      "question": "What is the warranty period for Glow bulbs?",
+      "timestamp": "2026-09-29T11:29:25.768",
+      "latency_ms": 2429.52,
+      "http_status": 200,
+      "request": {
+        "query": "What is the warranty period for Glow bulbs?"
+      },
+      "response": {
+        "matched": true,
+        "answer": "NOVAHAUS_Product_Catalog\n### Glow Bulb A19\n- **SKU:** NH-GL-A19\n- **Category:** Smart Lighting\n- **Retail price:** Rp129,000\n- **Warranty:** 2 years\n- **Key specifications:** 9W LED | 806 lm | 2700K-6500K | Wi-Fi 2.4GHz + Bluetooth | Dimmable | White tunable | 220-240V | E27 socket\n- **Key capabilities:** Remote on/off | Scheduling | Energy-saving mode | Sunrise/sunset automation | Room scenes\n- **Compatibility:** NOVAHAUS Home | Google Home | Amazon Alexa",
+        "score": 0.62072808623916,
+        "degraded": false
+      }
+    },
+    {
+      "group": "warranty_glow",
+      "category": "FAQ - Warranty",
+      "expected": "Glow lighting carries a 2-year warranty",
+      "question": "Glow warranty duration?",
+      "timestamp": "2026-09-29T11:29:28.198",
+      "latency_ms": 2293.64,
+      "http_status": 200,
+      "request": {
+        "query": "Glow warranty duration?"
+      },
+      "response": {
+        "matched": true,
+        "answer": "NOVAHAUS_Product_Catalog\n### Glow Strip 2M\n- **SKU:** NH-GL-STRIP-2M\n- **Category:** Smart Lighting\n- **Retail price:** Rp249,000\n- **Warranty:** 2 years\n- **Key specifications:** 2m length | 12V adapter | RGB | 60 LEDs/m | Wi-Fi 2.4GHz | Cut points every 10cm\n- **Key capabilities:** Gradient-style scenes | Timer | Brightness control | Color presets | TV/desk ambience\n- **Compatibility:** NOVAHAUS Home | Google Home | Amazon Alexa",
+        "score": 0.7418895780737227,
+        "degraded": false
+      }
+    },
+    {
+      "group": "warranty_glow",
+      "category": "FAQ - Warranty",
+      "expected": "Glow lighting carries a 2-year warranty",
+      "question": "Does the Glow Bulb have a warranty?",
+      "timestamp": "2026-09-29T11:29:30.492",
+      "latency_ms": 1839.84,
+      "http_status": 200,
+      "request": {
+        "query": "Does the Glow Bulb have a warranty?"
+      },
+      "response": {
+        "matched": true,
+        "answer": "NOVAHAUS_FAQ\n**Q: Does Glow Bulb RGB support color lighting?**\nA: Yes. It supports RGB color control in addition to adjustable white temperature.",
+        "score": 0.6408237487640868,
+        "degraded": false
+      }
+    },
+    {
+      "group": "camera_storage",
+      "category": "FAQ - Cameras",
+      "expected": "Secure Cam Pan supports microSD up to 256GB",
+      "question": "What storage does Secure Cam Pan support?",
+      "timestamp": "2026-09-29T11:29:32.332",
+      "latency_ms": 1103.88,
+      "http_status": 200,
+      "request": {
+        "query": "What storage does Secure Cam Pan support?"
+      },
+      "response": {
+        "matched": true,
+        "answer": "NOVAHAUS_FAQ\n**Q: What storage does Secure Cam Pan support?**\nA: It supports microSD cards up to 256GB.",
+        "score": 0.8891339460103702,
+        "degraded": false
+      }
+    },
+    {
+      "group": "camera_storage",
+      "category": "FAQ - Cameras",
+      "expected": "Secure Cam Pan supports microSD up to 256GB",
+      "question": "How much microSD storage can Secure Cam Pan take?",
+      "timestamp": "2026-09-29T11:29:33.436",
+      "latency_ms": 1671.75,
+      "http_status": 200,
+      "request": {
+        "query": "How much microSD storage can Secure Cam Pan take?"
+      },
+      "response": {
+        "matched": true,
+        "answer": "NOVAHAUS_Product_Catalog\n### Secure Cam Pan\n- **SKU:** NH-SC-PAN\n- **Category:** Security Camera\n- **Retail price:** Rp749,000\n- **Warranty:** 2 years\n- **Key specifications:** 2K video | 355° pan | 100° tilt | IR night vision | 2.4GHz Wi-Fi | Two-way audio | microSD up to 256GB\n- **Key capabilities:** Auto tracking | Motion zones | Patrol points | Privacy mode | Cloud optional\n- **Compatibility:** NOVAHAUS Home",
+        "score": 0.8170158231131452,
+        "degraded": false
+      }
+    },
+    {
+      "group": "camera_storage",
+      "category": "FAQ - Cameras",
+      "expected": "Secure Cam Pan supports microSD up to 256GB",
+      "question": "Secure Cam Pan memory card limit?",
+      "timestamp": "2026-09-29T11:29:35.107",
+      "latency_ms": 1089.95,
+      "http_status": 200,
+      "request": {
+        "query": "Secure Cam Pan memory card limit?"
+      },
+      "response": {
+        "matched": true,
+        "answer": "NOVAHAUS_FAQ\n**Q: What storage does Secure Cam Pan support?**\nA: It supports microSD cards up to 256GB.",
+        "score": 0.7423603081237912,
+        "degraded": false
+      }
+    },
+    {
+      "group": "budget_smart_plug",
+      "category": "Budget filtering",
+      "expected": "Budget path: Connect Plug Mini Rp149,000 matches under 200k",
+      "question": "I want a smart plug under 200k",
+      "timestamp": "2026-09-29T11:29:36.197",
+      "latency_ms": 6879.01,
+      "http_status": 200,
+      "request": {
+        "query": "I want a smart plug under 200k"
+      },
+      "response": {
+        "matched": true,
+        "answer": "NOVAHAUS_Product_Catalog\n### Glow Bulb A19\n- **SKU:** NH-GL-A19\n- **Category:** Smart Lighting\n- **Retail price:** Rp129,000\n- **Warranty:** 2 years\n- **Key specifications:** 9W LED | 806 lm | 2700K-6500K | Wi-Fi 2.4GHz + Bluetooth | Dimmable | White tunable | 220-240V | E27 socket\n- **Key capabilities:** Remote on/off | Scheduling | Energy-saving mode | Sunrise/sunset automation | Room scenes\n- **Compatibility:** NOVAHAUS Home | Google Home | Amazon Alexa",
+        "score": 0.639403911662227,
+        "degraded": false
+      }
+    },
+    {
+      "group": "budget_smart_plug",
+      "category": "Budget filtering",
+      "expected": "Budget path: Connect Plug Mini Rp149,000 matches under 200k",
+      "question": "Show me smart plugs below Rp 200.000",
+      "timestamp": "2026-09-29T11:29:43.076",
+      "latency_ms": 6909.81,
+      "http_status": 200,
+      "request": {
+        "query": "Show me smart plugs below Rp 200.000"
+      },
+      "response": {
+        "matched": true,
+        "answer": "NOVAHAUS_Product_Catalog\n### Glow Bulb A19\n- **SKU:** NH-GL-A19\n- **Category:** Smart Lighting\n- **Retail price:** Rp129,000\n- **Warranty:** 2 years\n- **Key specifications:** 9W LED | 806 lm | 2700K-6500K | Wi-Fi 2.4GHz + Bluetooth | Dimmable | White tunable | 220-240V | E27 socket\n- **Key capabilities:** Remote on/off | Scheduling | Energy-saving mode | Sunrise/sunset automation | Room scenes\n- **Compatibility:** NOVAHAUS Home | Google Home | Amazon Alexa",
+        "score": 0.5918138287027773,
+        "degraded": false
+      }
+    },
+    {
+      "group": "budget_smart_plug",
+      "category": "Budget filtering",
+      "expected": "Budget path: Connect Plug Mini Rp149,000 matches under 200k",
+      "question": "Smart plug cheaper than 200000",
+      "timestamp": "2026-09-29T11:29:49.986",
+      "latency_ms": 2172.17,
+      "http_status": 200,
+      "request": {
+        "query": "Smart plug cheaper than 200000"
+      },
+      "response": {
+        "matched": true,
+        "answer": "NOVAHAUS_FAQ\n**Q: What is the cheapest smart plug?**\nA: Connect Plug Mini is priced at Rp149,000.",
+        "score": 0.679832310184208,
+        "degraded": false
+      }
+    },
+    {
+      "group": "budget_smart_plug",
+      "category": "Budget filtering",
+      "expected": "Budget path: Connect Plug Mini Rp149,000 matches under 200k",
+      "question": "maximum 200000 for a smart plug",
+      "timestamp": "2026-09-29T11:29:52.158",
+      "latency_ms": 6956.16,
+      "http_status": 200,
+      "request": {
+        "query": "maximum 200000 for a smart plug"
+      },
+      "response": {
+        "matched": true,
+        "answer": "NOVAHAUS_Product_Catalog\n### Glow Bulb A19\n- **SKU:** NH-GL-A19\n- **Category:** Smart Lighting\n- **Retail price:** Rp129,000\n- **Warranty:** 2 years\n- **Key specifications:** 9W LED | 806 lm | 2700K-6500K | Wi-Fi 2.4GHz + Bluetooth | Dimmable | White tunable | 220-240V | E27 socket\n- **Key capabilities:** Remote on/off | Scheduling | Energy-saving mode | Sunrise/sunset automation | Room scenes\n- **Compatibility:** NOVAHAUS Home | Google Home | Amazon Alexa",
+        "score": 0.5539097555907192,
+        "degraded": false
+      }
+    },
+    {
+      "group": "budget_camera",
+      "category": "Budget filtering",
+      "expected": "No camera under 300k; budget path should not fabricate one",
+      "question": "Is there a camera under 300k?",
+      "timestamp": "2026-09-29T11:29:59.115",
+      "latency_ms": 6871.67,
+      "http_status": 200,
+      "request": {
+        "query": "Is there a camera under 300k?"
+      },
+      "response": {
+        "matched": true,
+        "answer": "NOVAHAUS_Product_Catalog\n### Glow Strip 2M\n- **SKU:** NH-GL-STRIP-2M\n- **Category:** Smart Lighting\n- **Retail price:** Rp249,000\n- **Warranty:** 2 years\n- **Key specifications:** 2m length | 12V adapter | RGB | 60 LEDs/m | Wi-Fi 2.4GHz | Cut points every 10cm\n- **Key capabilities:** Gradient-style scenes | Timer | Brightness control | Color presets | TV/desk ambience\n- **Compatibility:** NOVAHAUS Home | Google Home | Amazon Alexa",
+        "score": 0.44244882950632886,
+        "degraded": false
+      }
+    },
+    {
+      "group": "budget_camera",
+      "category": "Budget filtering",
+      "expected": "No camera under 300k; budget path should not fabricate one",
+      "question": "Any security camera below Rp 300.000?",
+      "timestamp": "2026-09-29T11:30:05.986",
+      "latency_ms": 7207.27,
+      "http_status": 200,
+      "request": {
+        "query": "Any security camera below Rp 300.000?"
+      },
+      "response": {
+        "matched": true,
+        "answer": "NOVAHAUS_Product_Catalog\n### Sense Motion\n- **SKU:** NH-SE-MOTION\n- **Category:** Sensor\n- **Retail price:** Rp189,000\n- **Warranty:** 1 year\n- **Key specifications:** PIR | 120° field | Up to 7m | Zigbee | CR2450 battery\n- **Key capabilities:** Motion alerts | Lighting automation | Away mode | Activity history\n- **Compatibility:** Home Hub Mini | Home Hub Pro",
+        "score": 0.5917227318495888,
+        "degraded": false
+      }
+    },
+    {
+      "group": "budget_camera",
+      "category": "Budget filtering",
+      "expected": "No camera under 300k; budget path should not fabricate one",
+      "question": "cheapest camera under 300000",
+      "timestamp": "2026-09-29T11:30:13.194",
+      "latency_ms": 6915.57,
+      "http_status": 200,
+      "request": {
+        "query": "cheapest camera under 300000"
+      },
+      "response": {
+        "matched": true,
+        "answer": "NOVAHAUS_Product_Catalog\n### Glow Bulb A19\n- **SKU:** NH-GL-A19\n- **Category:** Smart Lighting\n- **Retail price:** Rp129,000\n- **Warranty:** 2 years\n- **Key specifications:** 9W LED | 806 lm | 2700K-6500K | Wi-Fi 2.4GHz + Bluetooth | Dimmable | White tunable | 220-240V | E27 socket\n- **Key capabilities:** Remote on/off | Scheduling | Energy-saving mode | Sunrise/sunset automation | Room scenes\n- **Compatibility:** NOVAHAUS Home | Google Home | Amazon Alexa",
+        "score": 0.46609499925023995,
+        "degraded": false
+      }
+    },
+    {
+      "group": "safety_escalation",
+      "category": "Safety critical",
+      "expected": "Escalation wording (burning smell / smoke / sparking)",
+      "question": "My smart switch is sparking and there is a burning smell",
+      "timestamp": "2026-09-29T11:30:20.109",
+      "latency_ms": 29.41,
+      "http_status": 200,
+      "request": {
+        "query": "My smart switch is sparking and there is a burning smell"
+      },
+      "response": {
+        "matched": false,
+        "answer": "Sorry, I cannot help with that based on the available catalog.",
+        "score": 0.3718176155379036,
+        "degraded": false
+      }
+    },
+    {
+      "group": "safety_escalation",
+      "category": "Safety critical",
+      "expected": "Escalation wording (burning smell / smoke / sparking)",
+      "question": "There is smoke coming from my smart plug",
+      "timestamp": "2026-09-29T11:30:20.139",
+      "latency_ms": 28.41,
+      "http_status": 200,
+      "request": {
+        "query": "There is smoke coming from my smart plug"
+      },
+      "response": {
+        "matched": false,
+        "answer": "Sorry, I cannot help with that based on the available catalog.",
+        "score": 0.4370287428649023,
+        "degraded": false
+      }
+    },
+    {
+      "group": "safety_escalation",
+      "category": "Safety critical",
+      "expected": "Escalation wording (burning smell / smoke / sparking)",
+      "question": "My Connect Plug is melting",
+      "timestamp": "2026-09-29T11:30:20.167",
+      "latency_ms": 27.38,
+      "http_status": 200,
+      "request": {
+        "query": "My Connect Plug is melting"
+      },
+      "response": {
+        "matched": false,
+        "answer": "Sorry, I cannot help with that based on the available catalog.",
+        "score": 0.4011794000227955,
+        "degraded": false
+      }
+    },
+    {
+      "group": "mixed_intent",
+      "category": "Mixed conversational + factual",
+      "expected": "Prefix acknowledgement + factual answer from catalog",
+      "question": "Hi, how long does delivery take in Java?",
+      "timestamp": "2026-09-29T11:30:20.195",
+      "latency_ms": 1083.51,
+      "http_status": 200,
+      "request": {
+        "query": "Hi, how long does delivery take in Java?"
+      },
+      "response": {
+        "matched": true,
+        "answer": "Hello! NOVAHAUS_FAQ\n**Q: How long does delivery take within Java?**\nA: Typical delivery is 2-5 business days.",
+        "score": 0.874971226894057,
+        "degraded": false
+      }
+    },
+    {
+      "group": "mixed_intent",
+      "category": "Mixed conversational + factual",
+      "expected": "Prefix acknowledgement + factual answer from catalog",
+      "question": "Thanks, what is the return window?",
+      "timestamp": "2026-09-29T11:30:21.278",
+      "latency_ms": 2205.51,
+      "http_status": 200,
+      "request": {
+        "query": "Thanks, what is the return window?"
+      },
+      "response": {
+        "matched": true,
+        "answer": "You are welcome! NOVAHAUS_FAQ\n**Q: How long is the return window?**\nA: Eligible products can generally be returned within 7 calendar days, subject to the return policy.",
+        "score": 0.6234559268182442,
+        "degraded": false
+      }
+    },
+    {
+      "group": "mixed_intent",
+      "category": "Mixed conversational + factual",
+      "expected": "Prefix acknowledgement + factual answer from catalog",
+      "question": "Hello, how many Zigbee devices can Home Hub Mini support?",
+      "timestamp": "2026-09-29T11:30:23.484",
+      "latency_ms": 537.19,
+      "http_status": 200,
+      "request": {
+        "query": "Hello, how many Zigbee devices can Home Hub Mini support?"
+      },
+      "response": {
+        "matched": false,
+        "answer": "Sorry, I cannot help with that based on the available catalog.",
+        "score": 0.8774386224579347,
+        "degraded": false
+      }
+    },
+    {
+      "group": "out_of_scope",
+      "category": "Out of scope",
+      "expected": "matched=false, refusal message",
+      "question": "What is the capital of France?",
+      "timestamp": "2026-09-29T11:30:24.021",
+      "latency_ms": 27.94,
+      "http_status": 200,
+      "request": {
+        "query": "What is the capital of France?"
+      },
+      "response": {
+        "matched": false,
+        "answer": "Sorry, I cannot help with that based on the available catalog.",
+        "score": 0.12787543144507232,
+        "degraded": false
+      }
+    },
+    {
+      "group": "out_of_scope",
+      "category": "Out of scope",
+      "expected": "matched=false, refusal message",
+      "question": "Can you cook me a pizza?",
+      "timestamp": "2026-09-29T11:30:24.049",
+      "latency_ms": 28.22,
+      "http_status": 200,
+      "request": {
+        "query": "Can you cook me a pizza?"
+      },
+      "response": {
+        "matched": false,
+        "answer": "Sorry, I cannot help with that based on the available catalog.",
+        "score": 0.1540299967161841,
+        "degraded": false
+      }
+    },
+    {
+      "group": "out_of_scope",
+      "category": "Out of scope",
+      "expected": "matched=false, refusal message",
+      "question": "Tell me a joke",
+      "timestamp": "2026-09-29T11:30:24.077",
+      "latency_ms": 27.9,
+      "http_status": 200,
+      "request": {
+        "query": "Tell me a joke"
+      },
+      "response": {
+        "matched": false,
+        "answer": "Sorry, I cannot help with that based on the available catalog.",
+        "score": 0.16272258943082155,
+        "degraded": false
+      }
+    },
+    {
+      "group": "out_of_scope",
+      "category": "Out of scope",
+      "expected": "matched=false, refusal message",
+      "question": "Who won the 2022 World Cup?",
+      "timestamp": "2026-09-29T11:30:24.105",
+      "latency_ms": 27.75,
+      "http_status": 200,
+      "request": {
+        "query": "Who won the 2022 World Cup?"
+      },
+      "response": {
+        "matched": false,
+        "answer": "Sorry, I cannot help with that based on the available catalog.",
+        "score": 0.1372264226794608,
+        "degraded": false
+      }
+    }
+  ]
+}

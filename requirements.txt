@@ -1,0 +1,18 @@
+# Python port of special-snowflake/chatbot-ai-company
+# Replaces node-llama-cpp ("Jev AI") with the LAYA decision engine.
+#
+#   pip install -r requirements.txt
+
+fastapi>=0.110
+uvicorn[standard]>=0.27
+pydantic>=2.6
+python-dotenv>=1.0
+laya>=0.3.21
+requests>=2.31
+
+# Optional: real sentence embeddings (all-MiniLM-L6-v2 parity with the JS build).
+# Without it the server falls back to deterministic hashed embeddings and logs a warning.
+# sentence-transformers>=2.5
+
+# Test-only
+pytest>=8.0
