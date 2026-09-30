@@ -24,12 +24,13 @@ import logging
 import os
 import time
 import uuid
+from pathlib import Path
 from typing import Any, Optional
 
 from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from fastapi.responses import FileResponse, JSONResponse, RedirectResponse
 
 from .catalog_service import CatalogService
 from .config import answering, config
@@ -155,6 +156,23 @@ async def create_server(
         synthesizer=synthesizer,
     )
     register_catalog_routes(app, catalog_service, log)
+
+    # ------------------------------------------------------------------ #
+    # Chat UI — served at ``/`` (port addition; the JS build only had JSON)
+    # ------------------------------------------------------------------ #
+    # A zero-dependency single-file browser client for the two catalog
+    # endpoints. Lifetimes are tied to the project root so the path resolves
+    # regardless of the process working directory.
+    chat_ui_file = Path(os.environ.get("CHAT_UI_FILE", "web/index.html"))
+    if not chat_ui_file.is_absolute():
+        chat_ui_file = Path(__file__).resolve().parent.parent / chat_ui_file
+
+    @app.get("/", include_in_schema=False)
+    async def chat_ui() -> Any:
+        """Serve the chat client, or fall back to the API docs if it is absent."""
+        if chat_ui_file.is_file():
+            return FileResponse(chat_ui_file, media_type="text/html")
+        return RedirectResponse(url="/documentation")
 
     if isinstance(catalog_service.embedder, object) and getattr(catalog_service.embedder, "degraded", False):
         log.warning(
