@@ -45,7 +45,7 @@ from .answer_text import (
     render_answer,
 )
 from .answerer import AnswerStrategy, Retrieval
-from .cache import QueryCache
+from .cache import QueryCache, normalize
 from .embeddings import EmbeddingProvider
 from .laya_engine import NO_MATCH, LayaEngine
 from .lexical import (
@@ -102,10 +102,20 @@ _CONVERSATIONAL_RESPONSES = {
     },
 }
 
+#: Forms that mean "thanks" once filler words are allowed to trail them
+#: ("thanks a lot", "thank you so much"). Matched against the normalised query.
+_THANKS_TAIL = r"(?:\s+(?:a\s+lot|so\s+much|very\s+much|a\s+bunch|again|mate|ya|sir|ma'?am))*"
+
 _CONVERSATIONAL_PATTERNS = {
     "id": [
-        (re.compile(r"^(halo|hai|hi|hei|hey|selamat pagi|selamat siang|selamat sore|selamat malam)$", re.I), "greeting"),
-        (re.compile(r"^(terima kasih|makasih|thanks|thank you|thx)$", re.I), "thanks"),
+        (
+            re.compile(
+                r"^(halo|hai|hi|hei|hey|selamat pagi|selamat siang|selamat sore|selamat malam)$",
+                re.I,
+            ),
+            "greeting",
+        ),
+        (re.compile(r"^(terima kasih|makasih|thanks|thank you|thx|makasih banyak)" + _THANKS_TAIL + r"$", re.I), "thanks"),
         (re.compile(r"^(bye|dadah|sampai jumpa|selamat tinggal)$", re.I), "bye"),
     ],
     "en": [
@@ -117,10 +127,21 @@ _CONVERSATIONAL_PATTERNS = {
             ),
             "greeting",
         ),
-        (re.compile(r"^(thanks|thank you|thx|cheers)$", re.I), "thanks"),
+        (re.compile(r"^(thanks|thank you|thx|cheers|many thanks)" + _THANKS_TAIL + r"$", re.I), "thanks"),
         (re.compile(r"^(bye|goodbye|see you|farewell)$", re.I), "bye"),
     ],
 }
+
+#: Words that carry no question on their own. A greeting prefix followed only by
+#: these ("thanks a lot") is small talk, not a greeting wrapped around a query —
+#: without this guard the prefix stripper retrieved on the remnant "a lot" and
+#: answered with unrelated catalog text.
+_FILLER_WORDS = frozenset(
+    {
+        "a", "lot", "so", "much", "very", "bunch", "again", "mate", "friend",
+        "sir", "ma", "am", "ya", "you", "there", "then", "all", "guys", "folks",
+    }
+)
 
 _MIXED_PREFIXES = [
     "terima kasih",
@@ -164,6 +185,15 @@ def conversational_intent(query: str) -> Optional[Dict[str, Any]]:
     lowered = trimmed.lower()
     language = _detect_language(trimmed)
 
+    # Match against the same normalisation the query cache keys on (lower-cased,
+    # trailing punctuation stripped). Without this, "Hello!" / "Thanks." missed
+    # the anchored patterns, fell through to retrieval and came back as a
+    # refusal — while the cache stored that refusal under the punctuation-free
+    # key "hello", so a later plainly-spelled "Hello" was served the wrong
+    # answer. questions.json lists "Hello!" as a greeting variant, so the two
+    # must be indistinguishable.
+    normalized = normalize(trimmed)
+
     # A bare Indonesian opener ("terima kasih") was refused because the language
     # detector guessed English and the English table holds no Indonesian
     # entries. Try the detected language first, then the other table, so a
@@ -172,7 +202,7 @@ def conversational_intent(query: str) -> Optional[Dict[str, Any]]:
     others.remove(language)
     for candidate in [language] + others:
         for pattern, kind in _CONVERSATIONAL_PATTERNS[candidate]:
-            if pattern.match(trimmed):
+            if pattern.match(normalized):
                 return {
                     "answer": _CONVERSATIONAL_RESPONSES[candidate][kind],
                     "query": "",
@@ -185,6 +215,17 @@ def conversational_intent(query: str) -> Optional[Dict[str, Any]]:
             remainder = trimmed[len(prefix):].lstrip(" ,").strip()
             if not remainder:
                 return None
+            # "thanks a lot" is small talk, not a greeting plus the question
+            # "a lot": if nothing but filler follows the prefix, answer the
+            # greeting/thanks itself instead of retrieving on the remnant.
+            remainder_words = meaningful_words(remainder)
+            if all(word in _FILLER_WORDS for word in remainder_words):
+                return {
+                    "answer": _CONVERSATIONAL_RESPONSES[language]["thanks"]
+                    if prefix in {"thanks", "thank you", "makasih", "terima kasih"}
+                    else _CONVERSATIONAL_RESPONSES[language]["greeting"],
+                    "query": "",
+                }
             return {
                 "prefix": _CONVERSATIONAL_RESPONSES[language]["greeting"].split(".")[0] + ". ",
                 "query": remainder,
