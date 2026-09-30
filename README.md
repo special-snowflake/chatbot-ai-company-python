@@ -8,6 +8,28 @@ contract, and the retrieval maths **identical**, and swaps the generative LLM fo
 [**LAYA**](https://github.com/NandhaKishorM/laya) — a non-autoregressive System 1 decision
 engine. Jev AI is removed completely.
 
+It also ships a **browser chat UI** served by the same process, so the whole thing runs from one
+command with no separate frontend build.
+
+---
+
+## Quick start
+
+```bash
+./run.sh            # API + chat UI on http://127.0.0.1:3000
+```
+
+`run.sh` creates the virtualenv (`/tmp/chatbot-ai-env`, via `uv` when available), installs
+`requirements.txt`, ingests `./source`, and serves three surfaces from one FastAPI process:
+
+| URL | What |
+| :--- | :--- |
+| `/` | browser chat UI (`web/index.html`) |
+| `/documentation` | interactive API console (Swagger UI) |
+| `/openapi.json` | raw schema |
+
+Manual setup and every configuration knob are in §5.
+
 ---
 
 ## 1. Stack mapping
@@ -60,6 +82,23 @@ Response:
 
 Before anything is ingested the endpoint returns **409**. Invalid payloads return **400** in the
 original Hapi/Joi error shape.
+
+### `GET /`
+
+Serves the browser chat UI (`web/index.html`, override with `CHAT_UI_FILE`). If that file is
+missing the route redirects to `/documentation` rather than failing. The page is a single
+self-contained HTML file — no build step, no framework, no external requests.
+
+Per answer the UI shows:
+
+* the reply text, with a red **`OUT OF SCOPE`** badge when `matched` is false (and `NO MATCH` for
+  a refusal), so a refusal can never be mistaken for an answer;
+* a meta line under each bot bubble — e.g. `score 0.863 · 14 ms`, plus `degraded embeddings` when
+  the hashed fallback is in use and `cached` on a cache hit;
+* a header status dot that turns green once `/openapi.json` responds;
+* six suggestion chips that submit a canned question, including an out-of-scope one.
+
+It posts to `/catalog/query`, so the UI and the API exercise exactly the same code path.
 
 ### Docs
 
@@ -150,14 +189,22 @@ The decision path is logged per request (`layap answered`, `tie expanded`, …) 
 │   ├── questions.json      # grounded paraphrase question set
 │   ├── run_test_suite.py   # multi-checkpoint harness (which LAYA model answers)
 │   ├── eval_questions.py   # 54 labeled cases with cited expectations
-│   └── run_eval.py         # before/after harness → EVAL_REPORT.md
+│   ├── run_eval.py         # before/after harness → EVAL_REPORT.md
+│   ├── threshold_retest.py # narrower threshold-only instrumentation (§6)
+│   └── make_architecture_figures.py  # renders the docs/ diagrams (§6.2)
 ├── test/
 │   ├── test_api.py         # pytest suite (API + scoring parity)
 │   └── test_answering.py   # pytest suite (strategy, guards, cache)
+├── web/
+│   └── index.html          # the chat UI served at / (single file, no build step)
+├── docs/
+│   └── answering-*.html / .png       # generated diagrams (§6.2)
 ├── source/                 # NOVAHAUS knowledge base (.md)
-├── data/                   # generated catalog index
+├── data/                   # generated catalog index (git-ignored)
+├── run.sh                  # one-command launcher: venv + deps + server
 ├── EVAL_REPORT.md          # generated answer-quality report
 ├── TEST_REPORT.md          # generated checkpoint-comparison report
+├── .env.example            # every knob, documented
 └── requirements.txt
 ```
 
@@ -165,21 +212,33 @@ The decision path is logged per request (`layap answered`, `tie expanded`, …) 
 
 ## 5. Running it
 
+The one-command path is `./run.sh` (see **Quick start**): it creates the virtualenv, installs
+dependencies and starts the server. To do it by hand:
+
 ```bash
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 
+# Optional but recommended: real MiniLM embeddings instead of the hashed fallback.
+pip install sentence-transformers
+
 cp .env.example .env          # optional, defaults match the JS build
-python -m src.server
+uvicorn src.server:app --host 127.0.0.1 --port 3000
 ```
 
-The server ingests `./source` on boot and listens on `PORT` (default `3000`).
+`python -m src.server` also works. The server ingests `./source` on boot, listens on `PORT`
+(default `3000`), and serves the chat UI at `/`.
 
-Index the catalog ahead of time instead:
+Index the catalog ahead of time instead. `scripts/ingest.py` takes **no command-line flags** — it
+reads `CATALOG_FILE` and `CATALOG_INDEX_FILE` from the environment:
 
 ```bash
-python scripts/ingest.py --source ./source --out ./data/catalog-index.json
+python -m scripts.ingest
 ```
+
+On a machine without `sentence-transformers` the server logs a warning and answers with
+deterministic hashed embeddings; the chat UI surfaces this by appending `degraded embeddings` to
+the answer's meta line.
 
 ### Configuration
 
@@ -193,6 +252,7 @@ python scripts/ingest.py --source ./source --out ./data/catalog-index.json
 | `LLM_TIMEOUT_MS` | `30000` | decision-engine timeout |
 | `CATALOG_FILE` | `./source` | JSON file or directory of `.md`/`.txt` |
 | `CATALOG_INDEX_FILE` | `./data/catalog-index.json` | persisted index path |
+| `CHAT_UI_FILE` | `web/index.html` | HTML file served at `/` (port addition) |
 
 Port additions (see §3.2):
 
@@ -217,7 +277,7 @@ Port additions (see §3.2):
 ## 6. Tests
 
 ```bash
-pytest test/ -v                                   # API + scoring-parity suite
+pytest test/ -v                                   # 32 tests: API + scoring parity
 python scripts/run_test_suite.py english multilingual   # end-to-end eval + report
 ```
 
@@ -309,6 +369,19 @@ number in them comes from `results/eval-*.json`, so re-run the script after chan
   deterministic path means most installs never call it; when it *is* called it costs roughly 1.6 GB
   of resident memory and 3–6.5 s per question on a dual-core CPU. Set it to `true` if you route a
   lot of open-ended traffic its way.
+
+### Chat UI (`web/index.html`)
+
+* **Served by the API process itself**, at `/`, from a single file with no framework and no build
+  step. Point `CHAT_UI_FILE` elsewhere to swap it; if the file is absent the route redirects to
+  `/documentation` instead of erroring.
+* **Refusals are visually distinct on purpose.** A refusal carries a red `OUT OF SCOPE` badge and a
+  red bubble outline, so a visitor cannot mistake "I don't know" for an answer. The meta line under
+  each reply exposes the score, the latency, and whether the response was cached or fell back to
+  hashed embeddings — the UI shows its own uncertainty rather than hiding it.
+* **One suggestion chip does not currently clear the gate.** `What materials is the Aurora Light
+  made from?` scores around `0.35` against the corpus and is refused even though it is offered as a
+  chip. Either add a matching entry under `source/` or swap the chip for one the catalog covers.
 
 ### LAYA
 
